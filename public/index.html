@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Marketing Content Engine</title>
+	<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+	<header>
+		<h1>Marketing Content Engine</h1>
+		<p>Generate on-brand images or copy using your logo, palette, and slogans. Two AI providers, two options.</p>
+	</header>
+
+	<main>
+		<form id="engineForm">
+			<section class="card">
+				<h2>Brand Materials</h2>
+				<div class="grid">
+					<label>
+						<span>Brand Name</span>
+						<input type="text" name="brandName" placeholder="Acme Co" required>
+					</label>
+					<label>
+						<span>Logo (PNG/JPG)</span>
+						<input type="file" name="logo" accept="image/*">
+					</label>
+					<label class="full">
+						<span>Palette (hex colors, comma or space separated)</span>
+						<input type="text" name="palette" placeholder="#0ea5e9, #111827, #f59e0b">
+					</label>
+					<label class="full">
+						<span>Slogans / Taglines</span>
+						<textarea name="slogans" rows="2" placeholder="Just do it; Think different;"></textarea>
+					</label>
+					<label class="full">
+						<span>Brand Background / Voice</span>
+						<textarea name="brandContext" rows="3" placeholder="Who you are, your audience, tone, history..."></textarea>
+					</label>
+				</div>
+			</section>
+
+			<section class="card">
+				<h2>What to Create</h2>
+				<div class="grid">
+					<label>
+						<span>Type</span>
+						<select name="mode" id="mode">
+							<option value="image">Image</option>
+							<option value="copy">Copy</option>
+						</select>
+					</label>
+					<label id="sizeWrapper">
+						<span>Image Size</span>
+						<select name="size" id="size">
+							<option value="1200x1200">1200 x 1200</option>
+							<option value="1500x500">1500 x 500</option>
+							<option value="1080x1350">1080 x 1350</option>
+							<option value="1080x1920">1080 x 1920</option>
+						</select>
+					</label>
+					<label class="full">
+						<span>What do you want?</span>
+						<textarea name="userContext" rows="3" placeholder="e.g., Spring campaign hero visual with bold typography and product focus"></textarea>
+					</label>
+				</div>
+				<div class="actions">
+					<button type="submit" id="generateBtn">Generate</button>
+				</div>
+			</section>
+		</form>
+
+		<section id="results" class="card hidden">
+			<h2>Results</h2>
+			<div id="resultsContainer" class="results-grid"></div>
+		</section>
+	</main>
+
+	<footer>
+		<small>Providers: OpenAI and Cohere (copy); OpenAI and Stability AI (images). Placeholders are used if API keys are not set.</small>
+	</footer>
+
+	<script src="/app.js"></script>
+</body>
+</html>
