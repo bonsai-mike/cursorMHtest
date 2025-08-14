@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copy Request Brief</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-inner">
+      <h1>Copy Request</h1>
+      <div class="header-actions">
+        <button id="btn-print" class="btn btn-secondary" type="button" title="Print or save as PDF">Print</button>
+        <button id="btn-reset" class="btn btn-ghost" type="button" title="Clear all fields">Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <section class="panel form-panel">
+      <form id="brief-form" novalidate>
+        <div class="grid">
+          <div class="form-control col-span-2">
+            <label for="projectTitle">Project title *</label>
+            <input id="projectTitle" name="projectTitle" type="text" required placeholder="e.g., Q4 Holiday Campaign: Email #1" />
+            <small class="hint">A short, descriptive name for this request.</small>
+          </div>
+
+          <div class="form-control">
+            <label for="copyType">Copy type</label>
+            <select id="copyType" name="copyType">
+              <option value="Landing Page">Landing Page</option>
+              <option value="Email">Email</option>
+              <option value="Ad">Ad</option>
+              <option value="Social Post">Social Post</option>
+              <option value="Blog">Blog</option>
+              <option value="Push Notification">Push Notification</option>
+              <option value="SMS">SMS</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-control">
+            <label for="brand">Brand / Product</label>
+            <input id="brand" name="brand" type="text" placeholder="e.g., Acme Plus" />
+          </div>
+
+          <div class="form-control">
+            <label for="language">Language</label>
+            <select id="language" name="language">
+              <option value="English">English</option>
+              <option value="Spanish">Spanish</option>
+              <option value="French">French</option>
+              <option value="German">German</option>
+              <option value="Italian">Italian</option>
+              <option value="Portuguese">Portuguese</option>
+              <option value="Dutch">Dutch</option>
+              <option value="Japanese">Japanese</option>
+              <option value="Korean">Korean</option>
+              <option value="Chinese (Simplified)">Chinese (Simplified)</option>
+            </select>
+          </div>
+
+          <div class="form-control">
+            <label for="wordCount">Word count target</label>
+            <input id="wordCount" name="wordCount" type="number" min="0" step="10" placeholder="e.g., 150" />
+          </div>
+
+          <div class="form-control">
+            <label for="priority">Priority</label>
+            <select id="priority" name="priority">
+              <option value="Normal">Normal</option>
+              <option value="High">High</option>
+              <option value="ASAP">ASAP</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+
+          <div class="form-control">
+            <label for="deadline">Deadline</label>
+            <input id="deadline" name="deadline" type="date" />
+          </div>
+
+          <div class="form-control col-span-2">
+            <label for="objective">Objective *</label>
+            <textarea id="objective" name="objective" rows="3" required placeholder="What should this copy achieve?" ></textarea>
+          </div>
+
+          <div class="form-control col-span-2">
+            <label for="audience">Audience</label>
+            <textarea id="audience" name="audience" rows="3" placeholder="Who are we speaking to? Demographics, psychographics, pain points." ></textarea>
+          </div>
+
+          <div class="form-control col-span-2">
+            <label for="tone">Tone of voice</label>
+            <input id="tone" name="tone" type="text" placeholder="e.g., Friendly, clear, and confidence-inspiring" />
+          </div>
+
+          <div class="form-control col-span-2">
+            <label for="keyMessages">Key messages (one per line)</label>
+            <textarea id="keyMessages" name="keyMessages" rows="4" placeholder="List the must-include points, one per line."></textarea>
+          </div>
+
+          <div class="form-control col-span-2">
+            <label for="cta">Primary call to action</label>
+            <input id="cta" name="cta" type="text" placeholder="e.g., Start free trial" />
+          </div>
+
+          <div class="form-control col-span-2">
+            <label for="seoKeywords">SEO keywords (comma-separated)</label>
+            <textarea id="seoKeywords" name="seoKeywords" rows="2" placeholder="e.g., email marketing, automation, CRM"></textarea>
+          </div>
+
+          <div class="form-control col-span-2">
+            <label for="references">References / links (one per line)</label>
+            <textarea id="references" name="references" rows="3" placeholder="URLs, docs, previous campaigns, assets"></textarea>
+          </div>
+
+          <div class="form-control col-span-2">
+            <label for="constraints">Constraints / required phrases</label>
+            <textarea id="constraints" name="constraints" rows="2" placeholder="Legal or brand requirements to include"></textarea>
+          </div>
+
+          <div class="form-control col-span-2">
+            <label for="notes">Additional notes</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Anything else the writer should know"></textarea>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button id="btn-copy" class="btn" type="button">Copy brief</button>
+          <button id="btn-download-md" class="btn btn-secondary" type="button">Download .md</button>
+          <button id="btn-download-json" class="btn btn-secondary" type="button">Download .json</button>
+          <button id="btn-email" class="btn btn-ghost" type="button">Create email</button>
+        </div>
+      </form>
+    </section>
+
+    <aside class="panel preview-panel">
+      <div class="preview-header">
+        <h2>Preview</h2>
+        <small id="autosave-indicator" aria-live="polite"></small>
+      </div>
+      <pre id="preview" class="preview" aria-live="polite"></pre>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <small>Made for marketers. Data is stored locally in your browser.</small>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
